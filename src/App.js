@@ -1,27 +1,35 @@
 import React, {Component} from 'react';
-import List from './Components/List';
+import ListItem from './Components/ListItem';
 class App extends Component {
   state = {
     text: '',
-    items: []
+    items: [],
+  
+  
   }
 addInput= () => {
 
     this.setState({
       text: '',
-      items: [...this.state.items, this.state.text]
+      items: [...this.state.items, this.state.text],
+   
     });
   }
 
 
 
 render() {
+
+  
   return (
     <div style={{display: 'flex', justifyContent: 'center', marginTop: 50, flexDirection: 'column', alignItems: 'center'}}>
        <input style={{width: '400px'}} type="text" value={this.state.text} onChange={(event) => this.setState({text: event.target.value})} /> 
-       <button onClick={this.addInput}>ADD</button>
-    
-       <List items={this.state.items} />
+       <button onClick={this.addInput}   >ADD</button>
+        <ul>
+       {this.state.items.map((item,index) => {
+          return <ListItem item={item} />
+        })}
+        </ul>
       
     </div>
   );
